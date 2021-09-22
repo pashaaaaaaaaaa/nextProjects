@@ -8,10 +8,45 @@ body{
     margin:0;
     padding: 0;
 }
-.big-container{
+.bigBtn{
+    
+    
     border: 1px solid black;
-    width: 200px;
+    width: 400px;
     height: 200px;
-    padding: 10px;
+    padding: 20px;
     margin: auto;
+}
+.newBtn1{
+    content: 'button';
+    width: 160px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.newBtn2{
+    content: 'button';
+    width: 160px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.newBtn3{
+    content: 'button';
+    width: 160px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
+}
+.block{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid black;
+    background: red;
 }

@@ -116,6 +116,7 @@ h1{
 }
 .wrapperOne{
     align-items: center;
+    
 }
 
 .wrapperImg{
@@ -148,4 +149,11 @@ h1{
     align-items: center;
 
 
+}
+/* практика  */
+
+
+.selected{
+    background-color: cadetblue;
+    border-radius: 10px;
 }

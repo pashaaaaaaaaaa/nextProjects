@@ -49,7 +49,7 @@ function addTask() {
 
     pressDalete.addEventListener('click', (event) => {
         event.target.parentNode.remove()
-    })
+    });
 
 
     // Кнопка (ДОБАВИТЬ)
@@ -57,18 +57,68 @@ function addTask() {
     add.addEventListener('click', (event) => {
         const div = addElement();        
         container.append(div);
-    })  
+    });
 }
 
 
     // вторая функция которое создает див.инпут и картину
+    const clickButton = document.createElement('div');
 
+    //функция для главного инпута
 
-
+    function addFirstInput(){
+        const container = document.querySelector('.wrapper');
+        const div = addElement();        
+        container.append(div);
+    }
+    
+    //доп функция
 
 function addElement() {
     const clickButton = document.createElement('div');
     clickButton.classList.add('wrapperInput');
+
+    // drag and drop version
+
+
+    clickButton.draggable = true //открытие возможности для дракстар дракентер и драк ен
+
+    clickButton.addEventListener('dragstart',eventHandler)
+    clickButton.addEventListener('dragenter',eventHandler)
+    clickButton.addEventListener('dragend',eventHandler)
+
+    function eventHandler(event){
+        let actCard = null;
+        switch(event.type){
+            case 'dragstart':
+            actCard = event.currentTarget;// создаю событие и присваиваю к активу карду
+            event.target.classList.add('selected')
+                console.log(1)
+                break;
+            case 'dragenter':
+            changeCards(actCard, event.currentTarget)
+                console.log(2)
+                break;
+            case 'dragend':
+                event.target.classList.remove('selected')
+                console.log(3)
+                break;
+        }
+
+    }
+    function changeCards(active, toSwap){
+        console.log(active.parentElement)
+        const cardsArr = [...active.parentElement.children];
+        const activeCardIndex = cardsArr.findIndex(element => element === active);
+        const swapCardIndex = cardsArr.findIndex(element => element === toSwap);
+        if (activeCardIndex < swapCardIndex) {
+            active.parentElement.insertBefore(toSwap, active);
+        } else if (activeCardIndex > swapCardIndex) {
+            active.parentElement.insertBefore(active, toSwap);
+        }
+        
+    }
+
 
     // добавляю в массив 
 
@@ -77,8 +127,11 @@ function addElement() {
     // создаю новый инпут
 
     const clickInput = document.createElement('input');
+    clickInput.style.border = "none";
+    clickInput.placeholder = "task text";
     clickInput.classList.add('wrapperOne');
     clickInput.type = "text";
+    clickInput.draggable = true;
 
     // создаю новую картину закрыть
 
@@ -90,33 +143,27 @@ function addElement() {
     exitButton.addEventListener('click', (event) => {
         const div = event.target.parentNode;
         div.remove();
-       const indexDalet = taskList.indexOf(div)
-       taskList.splice(indexDalet, 1)
+       const indexDalet = taskList.indexOf(div);
+       taskList.splice(indexDalet, 1);
     });
 
     // присвоение друг на друга
 
     clickButton.append(clickInput);
     clickButton.append(exitButton);
+
+
+    
     
     return clickButton;
+
+
+
+    
+
+
 }
 
-// функция для главного инпута 
-
-
-function addFirstInput(){
-    const container = document.querySelector('.wrapper');
-    const div = addElement();        
-    container.append(div);
-}
-
-
-// drag and drop version
-
-const constDrag = document.querySelector('.container')
-
-console.log(constDrag)
 
 
 
